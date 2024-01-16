@@ -30,7 +30,7 @@ fruit_c = streamlit.text_input("fruit?: ", "loquat")
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 
-my_cur.execute("insert into fruit_load_list (0) values (fruit_c)")
+
 
 my_cur.execute("select * from fruit_load_list")
 my_data_row = my_cur.fetchall()
