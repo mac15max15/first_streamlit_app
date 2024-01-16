@@ -24,3 +24,10 @@ fruit_choice = streamlit.text_input("fruit?: ", 'apple')
 
 fruityvice_result = requests.get('https://fruityvice.com/api/fruit/' + fruit_choice)
 streamlit.text(fruityvice_result.json())
+
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+my_data_row = my_cur.fetchone()
+streamlit.text("Hello from Snowflake:")
+streamlit.text(my_data_row)
