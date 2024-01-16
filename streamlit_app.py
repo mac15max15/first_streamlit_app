@@ -40,7 +40,7 @@ if streamlit.button("gimme the fruit"):
   streamlit.dataframe(get_fruit_load())
 
 def insert_fruit(fruit):
-  with my_cnx.cursor as my_cur:
+  with my_cnx.cursor() as my_cur:
     my_cur.execute("insert into fruit_load_list values ("+fruit+")")
     
 fruit_c = streamlit.text_input("fruit?: ", "loquat")
