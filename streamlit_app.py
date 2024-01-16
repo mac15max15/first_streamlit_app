@@ -41,7 +41,7 @@ if streamlit.button("gimme the fruit"):
 
 def insert_fruit(fruit):
   with my_cnx.cursor() as my_cur:
-    my_cur.execute("insert into fruit_load_list values ("+fruit+")")
+    my_cur.execute("insert into fruit_load_list values ('"+fruit+"')")
     
 fruit_c = streamlit.text_input("fruit?: ", "loquat")
 if streamlit.button("insert da fruit"):
