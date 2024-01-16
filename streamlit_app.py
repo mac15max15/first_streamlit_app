@@ -28,11 +28,15 @@ streamlit.text(fruityvice_result.json())
 fruit_c = streamlit.text_input("fruit?: ", "loquat")
 
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
 
+def get_fruit_load():
+  with my_cur as my_cnx.cursor():
+    my_cur.execute("select * from fruit_load_list")
+    return my_cur.fetchall()
 
+if streamlit.button("gimme the fruit"):
+  my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+  streamlit.text("data:")
+  streamlit.dataframe(get_fruit_load)
+  
 
-my_cur.execute("select * from fruit_load_list")
-my_data_row = my_cur.fetchall()
-streamlit.text("data:")
-streamlit.dataframe(my_data_row)
