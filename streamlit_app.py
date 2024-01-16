@@ -19,7 +19,7 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 streamlit.dataframe(fruits_to_show)
 
 import requests
-fruit_choice = streamlit.text_inpurt("fruit?: ")
+fruit_choice = streamlit.text_input("fruit?: ")
 
 fruityvice_result = requests.get('https://fruityvice.com/api/fruit/' + fruit_choice)
 streamlit.text(fruityvice_result.json())
